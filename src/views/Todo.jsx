@@ -184,7 +184,7 @@ function Todo() {
                 <ul className="todoList_item">
                   {filterTodos.length === 0 ? (
                     <li className="todoList_label" style={{ justifyContent: 'space-around', cursor: 'auto' }}>
-                      目前尚無項目
+                      目前尚無待辦事項
                     </li>
                   ) : ('')}
                   {filterTodos.map((todo) => {
@@ -206,7 +206,7 @@ function Todo() {
                   })}
                 </ul>
                 <div className="todoList_statistics">
-                  <p> {notFinish} 個未完成項目</p>
+                  <p> {notFinish} 個待完成項目</p>
                   <a href="#" onClick={(e) => {
                     e.preventDefault();
                     clearFinishItem();
