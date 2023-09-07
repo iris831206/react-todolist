@@ -14,6 +14,7 @@ function Todo() {
   const [newTodo, setNewTodo] = useState('');
   const [tabStatus, setTabStatus] = useState('all');
   const [notFinish, setNotFinish] = useState(0)
+  
 
   const token = document.cookie
     .split('; ')
@@ -133,10 +134,22 @@ function Todo() {
     })
   }
 
-  const handleLogout = () => {
-    
-    navigate('/')
-  }
+    const signOut = () => {
+      axios.post(`${VITE_APP_HOST}/users/sign_out`, {},
+        {
+          headers: {
+            Authorization: token,
+          }
+        }
+      ).then(response => {
+        console.log(response);
+        alert(response.data.message);
+        navigate('/')
+      }).catch((error) => {
+        console.log(error);
+        alert(error.response.data.message);
+      });
+    };
 
 
   return (
@@ -148,7 +161,7 @@ function Todo() {
             <li className="todo_sm"><span>{nickname}的代辦</span></li>
             <li><a href="#" onClick={(e) => {
               e.preventDefault();
-              handleLogout()
+              signOut()
             }}>登出</a></li>
           </ul>
         </nav>
